@@ -31,11 +31,11 @@ def opening_hours():
         hours.append(re.split("<|>",lines[weekday])[2])
         
     msg += "\nMagasin åbningstider for " + now.strftime('%A %d. %B - %G') + "\n\n"
-    msg += "Kongens Nytorv \t\t" + hours[0] + "\n"
-    msg += "Lyngby \t\t\t\t" + hours[1] + "\n"
-    msg += "Fields \t\t\t\t" + hours[2] + "\n"
-    msg += "Rødovre \t\t\t\t" + hours[3] + "\n"
-    msg += "Odense \t\t\t\t" + hours[4] + "\n"
-    msg += "Århus \t\t\t\t" + hours[5]
+    msg += "Kongens Nytorv       " + hours[0] + "\n"
+    msg += "Lyngby               " + hours[1] + "\n"
+    msg += "Fields               " + hours[2] + "\n"
+    msg += "Rødovre              " + hours[3] + "\n"
+    msg += "Odense               " + hours[4] + "\n"
+    msg += "Århus                " + hours[5]
 
     return msg

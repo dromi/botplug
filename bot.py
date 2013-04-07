@@ -5,12 +5,14 @@ import sys
 import logging
 import getpass
 import sleekxmpp
+
 from optparse import OptionParser
 from parse import *
 from parse import compile
 from sig_til import parse_sig_command
 from cmd_help import *
 from open_hours import *
+from bot_plugins.hey import *
 
 # Python versions before 3.0 do not use UTF-8 encoding by default.
 if sys.version_info < (3, 0):
@@ -52,10 +54,10 @@ class Botplug(sleekxmpp.ClientXMPP):
             print("got query: " + query)
 
             if str(self.parsedict['sig'].parse(query)) != "None":
-                self.say(parse_sig_command(query))
+                self.say(parse_sig_command(msg,query))
 
             elif str(self.parsedict['hej'].parse(query)) != "None":
-                self.say("Jamen Halløjsa " + msg['mucnick'])
+                self.say(hey(msg,query))
 
             elif str(self.parsedict['sov'].parse(query)) != "None":
                 if str(msg['from']).endswith("Dromi"):
