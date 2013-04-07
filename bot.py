@@ -10,6 +10,7 @@ from parse import *
 from parse import compile
 from sig_til import parse_sig_command
 from cmd_help import *
+from open_hours import *
 
 # Python versions before 3.0 do not use UTF-8 encoding by default.
 if sys.version_info < (3, 0):
@@ -59,7 +60,7 @@ class Botplug(sleekxmpp.ClientXMPP):
             elif str(self.parsedict['sov'].parse(query)) != "None":
                 if str(msg['from']).endswith("Dromi"):
                     print("closing")
-                    self.say("Nissen går i seng :-(")
+                    self.say("Botten går i seng :-(")
                     self.disconnect(wait=True)
                     exit(0)
                 else:
@@ -71,6 +72,10 @@ class Botplug(sleekxmpp.ClientXMPP):
 
             elif str(self.parsedict['kom'].parse(query)) != "None":
                 self.say(get_command_list())
+
+            elif str(self.parsedict['clo'].parse(query)) != "None":
+                self.say(opening_hours())
+
             else:
                 self.say("Kommandoen er mig ikke bekendt. Brug "+self.nick+": kommandoer for oversigt.")
 
@@ -95,6 +100,7 @@ class Botplug(sleekxmpp.ClientXMPP):
         parsedict['kom'] = compile(u"kommandoer")
         parsedict['hjæ'] = compile(u"hjælp {command}")
         parsedict['sov'] = compile(u"gå i seng")
+        parsedict['clo'] = compile(u"closing time")
         return parsedict
 
 
