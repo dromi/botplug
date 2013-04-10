@@ -49,7 +49,7 @@ class Botplug(sleekxmpp.ClientXMPP):
         #                  mtype='groupchat')
         
     def muc_message(self, msg):
-        if msg['body'].startswith(self.nick+":"):
+        if (msg['body'].startswith(self.nick+":") and self.nick != msg['from']):
             query = msg['body'][len(self.nick)+2:].lower().decode('utf-8')
             print("got query: " + query)
 
@@ -78,6 +78,9 @@ class Botplug(sleekxmpp.ClientXMPP):
             elif str(self.parsedict['clo'].parse(query)) != "None":
                 self.say(opening_hours())
 
+            elif str(self.parsedict['sut'].parse(query)) != "None":
+                self.say(msg['mucnick'] + ": bab knap!")
+
             else:
                 self.say("Kommandoen er mig ikke bekendt. Brug "+self.nick+": kommandoer for oversigt.")
 
@@ -103,6 +106,7 @@ class Botplug(sleekxmpp.ClientXMPP):
         parsedict['hjæ'] = compile(u"hjælp {command}")
         parsedict['sov'] = compile(u"gå i seng")
         parsedict['clo'] = compile(u"closing time")
+        parsedict['sut'] = compile(u"sut dut")
         return parsedict
 
 
