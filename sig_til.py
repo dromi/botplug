@@ -26,4 +26,4 @@ def parse_sig_command(msg,query):
     else: 
         reply = "Brug: sig til <person> at han/hun <besked>"
 
-    return reply.replace("han","du").replace("sig","dig").replace("hun","du").replace("sin","din").replace("jeg",msg['mucnick'])
+    return reply.replace("han","du").replace("sig","dig").replace("hun","du").replace("sin","din").replace("din", "min").replace("dit", "mit").replace("jeg",msg['mucnick'])
