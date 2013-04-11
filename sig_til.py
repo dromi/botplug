@@ -8,8 +8,8 @@ def parse_sig_command(msg, query):
         p = parse("sig til {unick} at {arg}", query)
         reply = p['unick'] + ": " + p['arg']
 
-    else:
-        reply = "Brug: sig til <person> at han/hun <besked>"
+    else: 
+        reply = "Brug: sig til <person> at <besked>"
 
     replace_dict = (
         ('jeg', msg['mucnick']),
@@ -23,6 +23,8 @@ def parse_sig_command(msg, query):
         ('dit', 'mit'),
         ('dine', 'mine'),
         ('sine', 'dine'),
+        ('ham', 'dig'),
+        ('hende', 'dig'),
     )
 
     for old, new in replace_dict:
